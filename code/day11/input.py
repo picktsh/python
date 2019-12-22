@@ -1,7 +1,3 @@
-## 深度理解笔记
-###### 2019年12月22日
-`input()` 输入的固定格式
-```python
 while True:
     txt = input('请输入点东西:')
     if txt:
@@ -10,4 +6,3 @@ while True:
     else:
         print('输入不通过,再试一次')
 print('程序结束')
-```
