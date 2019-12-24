@@ -59,16 +59,14 @@ yewen.land_area(960)
 
 # 阅读代码后运行
 class Chinese:
-    
     def land_area(self, area):
         print('我们居住的地方，陆地面积是%d万平方公里左右。' % area)
 
 
 class Cantonese(Chinese):
-    # 为参数 area 设置默认值。
-    def land_area(self, area=960, rate=0.0188):
-        Chinese.land_area(self, area * rate)  # 拿到父组件的方法,在参数上进行定制后输出
-        
+    def land_area(self, area=960, rate=0.0188):  # 间接的对方法进行重写
+        Chinese.land_area(self, area * rate)  # 直接继承父类方法,再调整参数
+
 
 yewen = Cantonese()
 yewen.land_area()

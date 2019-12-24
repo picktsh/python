@@ -8,7 +8,7 @@ class C0:
     name = 'C0'
 
 
-class C1(C0):
+class C1:
     num = 1
 
 
@@ -16,7 +16,7 @@ class C2(C0):
     num = 2
 
 
-class C3(C0):
+class C3:
     name = 'C3'
 
 
@@ -24,6 +24,12 @@ class C4(C1, C2, C3):
     pass
 
 
-c = C4()
-print(c.name)
-print(c.num)
+ins = C4()
+print(ins.name)  # 打印出C0
+print(ins.num)  # 打印出1
+
+'''
+输出:
+C3
+1
+'''

@@ -20,8 +20,8 @@ class Cantonese(Chinese):
 
 
 yewen = Cantonese()
-print(yewen.eye_number)
-print(yewen.eye_color)
+print(yewen.eye_number)  # 输出: 2
+print(yewen.eye_color)  # 输出: black
 
 '''
 类的继承之多重继承
