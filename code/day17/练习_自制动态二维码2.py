@@ -8,7 +8,8 @@ words = 'https://yigeqd.com/'
 # words = 'https://u.wechat.com/MADTGNZmWW6W5l2eImp43aE'
 # 这是图片
 # picture = './qrcode/TangSH-B.png'
-picture = './qrcode/fengche.gif'
+# picture = './qrcode/fengche.gif'
+picture = './qrcode/jiangjiang.gif'
 
 version, level, qr_name = myqr.run(
     words,
