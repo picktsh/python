@@ -4,7 +4,8 @@ from MyQR import myqr
 import os
 
 # 这里是二维码的内容
-words = 'https://yigeqd.com/'
+# words = 'https://yigeqd.com/'
+words = 'https://yigeqd.com/pre/jiangjiang/'
 # words = 'https://u.wechat.com/MADTGNZmWW6W5l2eImp43aE'
 # 这是图片
 # picture = './qrcode/TangSH-B.png'
