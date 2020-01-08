@@ -1,25 +1,52 @@
 """
-【练习时间】请你把上面csv文件写入的代码敲一遍。毕竟代码是绝对不能光看不敲的，快，敲起来！提示：先引入csv模块，用open()函数打开csv文件，不要忘了加newline=' '参数；然后利用csv.writer()函数创建一个writer对象，再调用writerow()方法，就可以往csv文件里写入内容。
+课堂练习
+我们的目标：续写代码，请把获取到的两页的文章标题、链接、摘要这些数据，使用csv保存到本地。
 """
+import requests
 import csv
+
+headers = {
+    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36'}
+url = 'https://www.zhihu.com/api/v4/members/zhang-jia-wei/articles?'
+articlelist = []
+# 建立一个空列表，以待写入数据
+offset = 0
+# 设置offset的起始值为0
+while True:
+    params = {
+        'include': 'data[*].comment_count,suggest_edit,is_normal,thumbnail_extra_info,thumbnail,can_comment,comment_permission,admin_closed_comment,content,voteup_count,created,updated,upvoted_followees,voting,review_info,is_labeled,label_info;data[*].author.badge[?(type=best_answerer)].topics',
+        'offset': str(offset),
+        'limit': '20',
+        'sort_by': 'voteups',
+    }
+    # 封装参数
+    res = requests.get(url, headers=headers, params=params)
+    # 发送请求，并把响应内容赋值到变量res里面
+    articles = res.json()
+    # print(articles)
+    data = articles['data']
+    # 定位数据
+    for i in data:
+        list1 = [i['title'], i['url'], i['excerpt']]
+        # 把数据封装成列表
+        articlelist.append(list1)
+    offset = offset + 20
+    # 在while循环内部，offset的值每次增加20
+    if offset > 40:
+        break
+    # 如果offset大于40，即爬了两页，就停止
+    # if articles['paging']['is_end'] == True:
+    # 如果键is_end所对应的值是True，就结束while循环。
+    # break
+print(articlelist)
+# 打印看看
+
 
 csv_file = open('demo.csv', 'w', newline='', encoding='utf-8')
-write = csv.writer(csv_file)
-write.writerow(['电影', '豆瓣评分'])
-rows = [['银河护卫队', '8.0'], ['复仇者联盟', '8.1'], ['中国机长', '9.4']]
-for i in rows:
-    write.writerow(i)
+writer = csv.writer(csv_file)
+writer.writerow(['标题', '链接', '摘要'])
+# 最后输出到csv中,获取数据和储存数据分开
+for i in articlelist:
+    writer.writerow(i)
 csv_file.close()
-
-"""
-用csv模块写入数据这一个知识点我们已经清楚。接下来我们可以继续学习怎么读取csv文件的数据。
-
-以刚刚创 建好的“demo.csv”文件为例。你可以先运行下面的代码，看看会读取出什么结果。
-"""
-import csv
-
-csv_file = open('demo.csv', 'r', newline='', encoding='utf-8')
-reader = csv.reader(csv_file)
-for row in reader:
-    print(row)
-csv_file.close()
+# 储存完毕关闭文档

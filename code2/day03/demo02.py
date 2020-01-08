@@ -1,19 +1,34 @@
 """
-上面的代码是第0关学过的内容，好，接下来就轮到BeautifulSoup登场解析数据了，请特别留意第2行和第6行新增的代码。
+课堂练习
+续写下方代码，使用find_all()语法查找最小父级标签，并把查找的结果打印出来。
+
+不懂做？点击下面的“需要帮助”。
 """
+# 引用requests库
 import requests
-# 引入BS库，下面的bs4就是beautifulsoup4
+# 引用BeautifulSoup库
 from bs4 import BeautifulSoup
 
-res = requests.get('https://localprod.pandateacher.com/python-manuscript/crawler-html/spider-men5.0.html')
-html = res.text
-# 把网页解析为BeautifulSoup对象
-soup = BeautifulSoup(html, 'html.parser')
-print(type(html))
-print(type(soup))
+# 获取数据
+res_foods = requests.get('http://www.xiachufang.com/explore/')
+# 解析数据
+bs_foods = BeautifulSoup(res_foods.text, 'html.parser')
+info = bs_foods.find_all("div", class_="info pure-u")
+print(info)
 
 """
-输出:
-<class 'str'>
-<class 'bs4.BeautifulSoup'>
+这个，是我提供的参考答案：
 """
+# 引用requests库
+import requests
+# 引用BeautifulSoup库
+from bs4 import BeautifulSoup
+
+# 获取数据
+res_foods = requests.get('http://www.xiachufang.com/explore/')
+# 解析数据
+bs_foods = BeautifulSoup(res_foods.text, 'html.parser')
+# 查找最小父级标签
+list_foods = bs_foods.find_all('div', class_='info pure-u')
+# 打印最小父级标签
+print(list_foods)

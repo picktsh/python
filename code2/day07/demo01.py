@@ -1,9 +1,20 @@
-"""
-运行以下三行代码，你就能直观清晰地知道csv是什么。
-"""
-file = open('test.csv', 'a+')
-# 创建test.csv文件，以追加的读写模式
-file.write('美国队长,钢铁侠,蜘蛛侠')
-# 写入test.csv文件
-file.close()
-# 关闭文件
+# 引入request和bs
+import requests
+from bs4 import BeautifulSoup
+
+# 使用headers是一种默认的习惯，默认你已经掌握啦~
+headers = {
+    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36'}
+# 发起请求，将响应的结果赋值给变量res。
+url = 'https://www.zhihu.com/people/zhang-jia-wei/posts/posts_by_votes?page=1'
+res = requests.get(url, headers=headers)
+# 检查状态码
+print(res.status_code)
+# 打印网页源代码
+print(res.text)
+# 用bs进行解析
+bstitle = BeautifulSoup(res.text, 'html.parser')
+# 提取我们想要的标签和里面的内容
+title = bstitle.find_all(class_='ContentItem-title')
+# 打印title
+print(title)

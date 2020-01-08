@@ -1,36 +1,44 @@
 """
-课堂练习
-续写下方代码，使它能够提取20个周杰伦的歌曲名。
+所以，其实我们可以把Query String Parameters里的内容，直接复制下来，封装为一个字典，传递给params。只是有一点要特别注意：要给他们打引号，让它们变字符串。
 
-不懂做？点击下面的“需要帮助”。
+icon
+所以，代码最后可能长这样：
 """
-# 引用requests库
 import requests
 
-# 调用get方法，下载这个字典
-res_music = requests.get(
-    'https://c.y.qq.com/soso/fcgi-bin/client_search_cp?ct=24&qqmusic_ver=1298&new_json=1&remoteplace=txt.yqq.song&searchid=60997426243444153&t=0&aggr=1&cr=1&catZhida=1&lossless=0&flag_qc=0&p=1&n=20&w=%E5%91%A8%E6%9D%B0%E4%BC%A6&g_tk=5381&loginUin=0&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0')
-# 使用json()方法，将response对象，转为列表/字典
-json_music = res_music.json()
-print(len(json_music))
-# print(json_music)
-for i in json_music['data']['song']['list']:
-    print(i)
+# 引用requests模块
+url = 'https://c.y.qq.com/base/fcgi-bin/fcg_global_comment_h5.fcg'
+# 请求歌曲评论的url参数前面的部分
 
-"""
-参考代码
-"""
-# 引用requests库
-import requests
-
-# 调用get方法，下载这个字典
-res_music = requests.get(
-    'https://c.y.qq.com/soso/fcgi-bin/client_search_cp?ct=24&qqmusic_ver=1298&new_json=1&remoteplace=txt.yqq.song&searchid=60997426243444153&t=0&aggr=1&cr=1&catZhida=1&lossless=0&flag_qc=0&p=1&n=20&w=%E5%91%A8%E6%9D%B0%E4%BC%A6&g_tk=5381&loginUin=0&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0')
-# 使用json()方法，将response对象，转为列表/字典
-json_music = res_music.json()
-# 一层一层地取字典，获取歌单列表
-list_music = json_music['data']['song']['list']
-# list_music是一个列表，music是它里面的元素
-for music in list_music:
-    # 以name为键，查找歌曲名
-    print(music['name'])
+for i in range(5):
+    params = {
+        'g_tk': '5381',
+        'loginUin': '0',
+        'hostUin': '0',
+        'format': 'json',
+        'inCharset': 'utf8',
+        'outCharset': 'GB2312',
+        'notice': '0',
+        'platform': 'yqq.json',
+        'needNewCode': '0',
+        'cid': '205360772',
+        'reqtype': '2',
+        'biztype': '1',
+        'topid': '102065756',
+        'cmd': '6',
+        'needmusiccrit': '0',
+        'pagenum': str(i),
+        'pagesize': '15',
+        'lasthotcommentid': 'song_102065756_3202544866_44059185',
+        'domain': 'qq.com',
+        'ct': '24',
+        'cv': '10101010'
+    }
+    # 将参数封装为字典
+    res_comments = requests.get(url, params=params)
+    # 调用get方法，下载这个字典
+    json_comments = res_comments.json()
+    list_comments = json_comments['comment']['commentlist']
+    for comment in list_comments:
+        print(comment['rootcommentcontent'])
+        print('-----------------------------------')

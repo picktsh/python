@@ -1,25 +1,40 @@
 """
-在网页的HTML代码中，有三个div元素（<div></div>），用find()可以提取出首个元素(只有一个)，而find_all()可以全部取出（三个）。
+课堂练习
+续写下方代码，提取出第0个父级标签中的第0个<a>标签，并输出菜名和URL。
+
+不懂做？点击下面的“需要帮助”。
 """
+# 引用requests库
 import requests
+# 引用BeautifulSoup库
 from bs4 import BeautifulSoup
 
-url = 'https://localprod.pandateacher.com/python-manuscript/crawler-html/spder-men0.0.html'
-res = requests.get(url)
-print(res.status_code)
-soup = BeautifulSoup(res.text, 'html.parser')
-# 使用find()方法提取首个<div>元素，并放到变量item里。
-item = soup.find('div')
-# 打印item的数据类型
-print(type(item))  # <class 'bs4.element.Tag'>
-# 打印item
-print(item)  # <div>大家好，我是一个块</div>
+# 获取数据
+res_foods = requests.get('http://www.xiachufang.com/explore/')
+# 解析数据
+bs_foods = BeautifulSoup(res_foods.text, 'html.parser')
+# 查找最小父级标签
+list_foods = bs_foods.find_all('div', class_='info pure-u')
+first_a = list_foods[0].find('a')
+print(first_a)
+"""
+参考代码
+"""
+# 引用requests库
+import requests
+# 引用BeautifulSoup库
+from bs4 import BeautifulSoup
 
-"""
-再来试试find_all()吧，它可以提取出网页中的全部div元素（3个），请看代码（第7行为新增代码），然后点击运行。
-"""
-items = soup.find_all('div')
-# 打印items的数据类型
-print(type(items))  # <class 'bs4.element.ResultSet'>
-# 打印items
-print(items)  # [<div>大家好，我是一个块</div>, <div>我也是一个块</div>, <div>我还是一个块</div>]
+# 获取数据
+res_foods = requests.get('http://www.xiachufang.com/explore/')
+# 解析数据
+bs_foods = BeautifulSoup(res_foods.text, 'html.parser')
+# 查找最小父级标签
+list_foods = bs_foods.find_all('div', class_='info pure-u')
+
+# 提取第0个父级标签中的<a>标签
+tag_a = list_foods[0].find('a')
+# 输出菜名，使用[17:-13]切掉了多余的信息
+print(tag_a.text[17:-13])
+# 输出URL
+print('http://www.xiachufang.com' + tag_a['href'])
