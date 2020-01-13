@@ -50,8 +50,9 @@ echo = {
         }
     ]
 }
+print('想对我说点什么呢?(输入 q 退出)')
 while True:
-    text = input('想对我说点什么呢?(输入 q 退出)')
+    text = input('我:')
     if text == 'q':
         break
     data = {
