@@ -5,3 +5,5 @@ sales = {"a": 20, "b": 10, "c": 13}
 
 for i in sales:
     print(i)
+
+print('程序结束')
