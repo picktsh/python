@@ -1,18 +1,4 @@
 import math
-import re
-
-
-def get_number(char):
-    """
-    判断字符串中，中文的个数
-    :param char: 字符串
-    :return:
-    """
-    count = 0
-    for item in char:
-        if 0x4E00 <= ord(item) <= 0x9FA5:
-            count += 1
-    return count
 
 
 def arrange(lists, column=5, width=20):
@@ -21,13 +7,13 @@ def arrange(lists, column=5, width=20):
     @params lists 要展示的内容[]
     @params column 每行显示的列(个)数 默认值:5
     @params width # 每个单词的宽度; 默认值:20 PS:一般单词都不超过20个字母吧
-    # TODO 暂不兼容中文字符,因为中文字符占2个宽度 [\u4e00-\u9fa5]
+    Tips: 中文字符宽不统一,会出现一些便宜现象,暂时没能解决 [\u4e00-\u9fa5]
     """
     # 内部合理储存变量;1.节省重复计算的CPU消耗;2.更好的进行断点测试
     lists_len = len(lists)  # 储存下传入的数组长度
     for i in range(lists_len):
         str = '{}.{}'.format(i + 1, lists[i])  # 要输出的内容:序号.内容
-        end = ' ' * (width - len(str) - get_number(str))  # 尾部填充的空格数量,!!!注意:中文字符宽度占2格需要特殊处理
+        end = ' ' * (width - len(str))  # 尾部填充的空格数量,!!!注意:中文字符宽不统一格需要特殊处理
         print(str, end=end)
         if (i + 1) % column == 0 or i + 1 == lists_len:  # 每到"列个数"的倍数时就换行; 最后一项换个行避免影响后续输出;
             print('')  # 恢复后续文本输出的默认色
@@ -44,6 +30,6 @@ data_1 = ['fact', 'believe', 'fact', 'reason', 'heart', 'easy', 'worker', 'sport
 data_2 = ['GMAT', 'NGEE', 'NCEE', 'CET4', 'CET6', 'TEM', 'TOEFL', 'GRE', 'IELTS', 'NONE']
 data_3 = ['GMAT', '考研', '高考', '四', '六级', '英专', '托福略略略', 'GRE', '雅思', '任意']
 # 测试数据
-arrange(data_3, 3, 20)
+arrange(data_1, 5, 20)
 
 print('-----程序结束-----')
