@@ -1,5 +1,5 @@
 # 本地Chrome浏览器设置方法
-from selenium import  webdriver
+from selenium import webdriver
 import time
 
 driver = webdriver.Chrome()
