@@ -45,7 +45,7 @@ def userLogin():
 # 发表评论
 def addComment():
     # 找到输入框,输入内容,点击发送
-
+    # 评论的内容也可以让用户自己输入
     commentContent = time.asctime() + "  Author: rise 爬虫第9节,练习要求这个评论中必须要带有“selenium”这个词。"
     print("您的评论内容:" + commentContent)
     driver.find_element_by_id("comment").send_keys(commentContent)
