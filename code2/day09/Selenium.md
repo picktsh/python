@@ -15,9 +15,27 @@ pip3 install selenium # Mac电脑安装selenium
 ```
 
 - 设浏览器引擎
+```python
+# 本地Chrome浏览器设置方法
+from selenium import webdriver  # 从selenium库中调用webdriver模块
+import time  # 调用time模块
+
+driver = webdriver.Chrome()  # 设置引擎为Chrome，真实地打开一个Chrome浏览器
+```
 - 获取数据
+```python
+driver.get("url")
+driver.find_element_by_class_name("className")
+```
+![](./img/crawler-l9-7-1-2019111.png)
 - 解析与提取数据
+```python
+# HTML源代码字符串 = driver.page_source 
+```
+![](./img/2019-03-25-16-26-33.png)
 - 自动操作浏览器
+
+![](./img/crawler-l9-13-2019111.png)
 > 3.实操运用
 - 确认目标
 - 分析过程
