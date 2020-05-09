@@ -18,21 +18,27 @@ print("请求完成")
 time.sleep(1)
 
 
+# csss = driver.find_elements_by_css_selector("#login")
+# print(len(csss))
+
+
 # 登录的方法
 def userLogin():
-    username = input("请输入用户名或电子邮件地址:")
-    password = input('请输入密码：')  # 想办法下隐藏用户输入的密码
+    username = input("\033[32m{}\033[0m".format("请输入用户名或电子邮件地址:"))
+    password = input("\033[33m{}\033[0m".format("请输入密码："))  # 想办法下隐藏用户输入的密码
 
     driver.find_element_by_id("user_login").send_keys(username)
     driver.find_element_by_id("user_pass").send_keys(password)
     print("点击登录前...")
     driver.find_element_by_id("wp-submit").click()
     time.sleep(1)
-    try:
+    homePages = driver.find_elements_by_css_selector(".site-content-contain")
+    if len(homePages) > 0:
         driver.find_element_by_class_name("site-content-contain")
         print("登录成功")
-    except BaseException:
-        print("账号或密码输错误! 请再试一次")
+    else:
+        login_error = driver.find_elements_by_css_selector("#login_error")
+        print("\033[31m{}\033[0m".format(login_error[0].text))
         userLogin()
 
 
