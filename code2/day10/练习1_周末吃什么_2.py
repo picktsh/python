@@ -31,7 +31,6 @@ password = input('请输入你的密码：')
 to_addr = input('请输入收件人的邮箱：')
 
 
-
 def send_email(content, subject):
     smtp_server = 'smtp.qq.com'
     qqmail = smtplib.SMTP()
@@ -50,13 +49,18 @@ def send_email(content, subject):
 def job():
     print('开始一次任务')
     menus = menu_spider()
-    print(str(menus))
-    send_email(str(menus), "周末吃什么?看这里")
+    # 这里要处理成适合页面显示的文本内容
+    page = '<ol>'
+    for i in menus:
+        page += '<li>{}</li>'.format(i)
+    page += '</ol>'
+    print(page)
+    send_email(page, "周末吃什么?看这里")
     print('任务完成')
 
 
 # schedule.every().day.at("07:30").do(job)
-schedule.every(10).seconds.do(job)  # 每2s执行一次job()函数
+schedule.every(3).seconds.do(job)  # 每2s执行一次job()函数
 while True:
     schedule.run_pending()
     time.sleep(1)
