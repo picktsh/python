@@ -20,3 +20,5 @@ while True:
     schedule.run_pending()
     time.sleep(1)
     # 15-17都是检查部署的情况，如果任务准备就绪，就开始执行任务。
+
+"""怎么让程序只执行N次"""
