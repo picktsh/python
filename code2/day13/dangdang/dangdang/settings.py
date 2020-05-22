@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for dandan project
+# Scrapy settings for dangdang project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,14 +9,14 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'dandan'
+BOT_NAME = 'dangdang'
 
-SPIDER_MODULES = ['dandan.spiders']
-NEWSPIDER_MODULE = 'dandan.spiders'
+SPIDER_MODULES = ['dangdang.spiders']
+NEWSPIDER_MODULE = 'dangdang.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'dandan (+http://www.yourdomain.com)'
+#USER_AGENT = 'dangdang (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -47,13 +47,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'dandan.middlewares.DandanSpiderMiddleware': 543,
+#    'dangdang.middlewares.DangdangSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'dandan.middlewares.DandanDownloaderMiddleware': 543,
+#    'dangdang.middlewares.DangdangDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -65,7 +65,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'dandan.pipelines.DandanPipeline': 300,
+#    'dangdang.pipelines.DangdangPipeline': 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
